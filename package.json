@@ -1,0 +1,26 @@
+{
+  "name": "magic-ring",
+  "version": "1.0.0",
+  "description": "huang",
+  "main": "index.js",
+  "scripts": {
+    "configEslint": "eslint --init"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lantuhui/MagicRing.git"
+  },
+  "keywords": [
+    "node",
+    "file"
+  ],
+  "author": "lantu xi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lantuhui/MagicRing/issues"
+  },
+  "homepage": "https://github.com/lantuhui/MagicRing#readme",
+  "devDependencies": {
+    "eslint": "^4.13.0"
+  }
+}
