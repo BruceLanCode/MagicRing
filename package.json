@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/lantuhui/MagicRing#readme",
   "devDependencies": {
+    "chalk": "^2.3.0",
     "eslint": "^4.13.0"
   }
 }
