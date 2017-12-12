@@ -4,7 +4,8 @@
   "description": "huang",
   "main": "index.js",
   "scripts": {
-    "configEslint": "eslint --init"
+    "configEslint": "eslint --init",
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",

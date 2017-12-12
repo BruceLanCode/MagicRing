@@ -1,2 +1,5 @@
-const huangxi = 'lantu';
-console.info(huangxi);
+const Server = require('./app');
+
+const server = new Server();
+server.start();
+
