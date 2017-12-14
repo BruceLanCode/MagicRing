@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "chalk": "^2.3.0",
-    "es6-promisify": "^5.0.0"
+    "es6-promisify": "^5.0.0",
+    "pug": "^2.0.0-rc.4"
   }
 }

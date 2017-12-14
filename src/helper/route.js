@@ -1,7 +1,14 @@
 const fs = require('fs');
 const promisify = require('es6-promisify');
 const stat = promisify(fs.stat);
+const path = require('path');
+const pug = require('pug');
 const readdir = promisify(fs.readdir);
+
+const tplPath = path.join(__dirname, '../template/dir.pug');
+const source = fs.readFileSync(tplPath);
+const template = pug.compile(source);
+// const template = pug.compileFile(source)
 
 module.exports = async (req, res, filePath, config) => {
     try {
@@ -12,10 +19,7 @@ module.exports = async (req, res, filePath, config) => {
             const files = await readdir(filePath);
             res.statusCode = 200;
             res.setHeader('Content-Type','text/html');
-            files.forEach(file => {
-                res.write(file+ '\n');
-            })
-            res.write('dir \n');
+            res.end(template());
         }
     } catch (ex) {
         console.info('err happened')
