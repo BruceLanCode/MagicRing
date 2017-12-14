@@ -1,3 +1,18 @@
 doctype html
 html(lang="en")
-    div haungxi
+    head
+        meta(charset="UTF-8")
+        title #{title}
+        style
+            |body {
+            |   margin: 30px;
+            |}
+            |a {
+            |   display: block;
+            |   font-size: 30px;
+            |}
+    body
+    each file in files
+        - var path = dir + '/' + file.name;
+        a(href= './'+ path)
+            |#{file.name}

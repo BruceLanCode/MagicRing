@@ -6,9 +6,9 @@ const pug = require('pug');
 const readdir = promisify(fs.readdir);
 
 const tplPath = path.join(__dirname, '../template/dir.pug');
-const source = fs.readFileSync(tplPath);
-const template = pug.compile(source);
-// const template = pug.compileFile(source)
+// const source = fs.readFileSync(tplPath);
+// const template = pug.compile(source);
+const template = pug.compileFile(tplPath);
 
 module.exports = async (req, res, filePath, config) => {
     try {
@@ -18,8 +18,16 @@ module.exports = async (req, res, filePath, config) => {
         } else if (stats.isDirectory()) {
             const files = await readdir(filePath);
             res.statusCode = 200;
-            res.setHeader('Content-Type','text/html');
-            res.end(template());
+            res.setHeader('Content-Type','text/html;charset=UTF-8');
+            const data = {
+                title: path.basename(filePath),
+                dir: req.url,
+                files: files.map(file => ({
+                    name: file,
+                    icon: 'huangxi'
+                }))
+            }
+            res.end(template(data));
         }
     } catch (ex) {
         console.info('err happened')
