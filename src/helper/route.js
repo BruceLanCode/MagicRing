@@ -4,6 +4,7 @@ const stat = promisify(fs.stat);
 const path = require('path');
 const pug = require('pug');
 const readdir = promisify(fs.readdir);
+const mime = require('./mime');
 
 const tplPath = path.join(__dirname, '../template/dir.pug');
 // const source = fs.readFileSync(tplPath);
@@ -14,7 +15,9 @@ module.exports = async (req, res, filePath, config) => {
     try {
         const stats = await stat(filePath);
         if (stats.isFile()) {
-            res.write('file \n');
+            const contentType = mime(filePath);
+            res.setHeader('Content-Type',contentType + ';charset=UTF-8');
+            res.write('file文件 \n');
         } else if (stats.isDirectory()) {
             const files = await readdir(filePath);
             res.statusCode = 200;
@@ -24,7 +27,7 @@ module.exports = async (req, res, filePath, config) => {
                 dir: req.url === '/' ? '' : req.url,
                 files: files.map(file => ({
                     name: file,
-                    icon: 'huangxi'
+                    icon: mime(file)
                 }))
             };
             res.end(template(data));
