@@ -21,12 +21,12 @@ module.exports = async (req, res, filePath, config) => {
             res.setHeader('Content-Type','text/html;charset=UTF-8');
             const data = {
                 title: path.basename(filePath),
-                dir: req.url,
+                dir: req.url === '/' ? '' : req.url,
                 files: files.map(file => ({
                     name: file,
                     icon: 'huangxi'
                 }))
-            }
+            };
             res.end(template(data));
         }
     } catch (ex) {
