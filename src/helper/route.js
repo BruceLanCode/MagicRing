@@ -17,7 +17,10 @@ module.exports = async (req, res, filePath, config) => {
         if (stats.isFile()) {
             const contentType = mime(filePath);
             res.setHeader('Content-Type',contentType + ';charset=UTF-8');
-            res.write('file文件 \n');
+            let rs = fs.createReadStream(filePath);
+            rs.pipe(res);
+            // res.write('huangxi');
+            // res.end('lantu');
         } else if (stats.isDirectory()) {
             const files = await readdir(filePath);
             res.statusCode = 200;
@@ -39,5 +42,4 @@ module.exports = async (req, res, filePath, config) => {
         res.setHeader('Content-Type', 'text/plain');
         res.end(`${filePath} is not a directory or file \n ${ex.toString()}`);
     }
-    res.end('huangxi');
 };
