@@ -5,6 +5,8 @@ const path = require('path');
 const pug = require('pug');
 const readdir = promisify(fs.readdir);
 const mime = require('./mime');
+const compress = require('./compress');
+const range = require('./range');
 
 const tplPath = path.join(__dirname, '../template/dir.pug');
 // const source = fs.readFileSync(tplPath);
@@ -17,7 +19,18 @@ module.exports = async (req, res, filePath, config) => {
         if (stats.isFile()) {
             const contentType = mime(filePath);
             res.setHeader('Content-Type',contentType + ';charset=UTF-8');
-            let rs = fs.createReadStream(filePath);
+            let rs;
+            const {code, start, end} = range(stats.size,req,res);
+            if(code === 200) {
+                res.statusCode = 200;
+                rs = fs.createReadStream(filePath);
+            } else {
+                res.statusCode = 206;
+                rs = fs.createReadStream(filePath, {start,end});
+            }
+            if(filePath.match(config.compress)) {
+                rs = compress(rs,req,res);
+            }
             rs.pipe(res);
             // res.write('huangxi');
             // res.end('lantu');
