@@ -14,8 +14,8 @@ class Server {
             const filePath = path.join(this.config.root,req.url);
             route(req,res,filePath,this.config);
         });
-        server.listen(3000,() => {
-            console.info(`Server start at ${chalk.bold.blue('3000')}`);
+        server.listen(this.config.port,() => {
+            console.info(`Server start at ${chalk.bold.blue(this.config.port)}`);
         });
     }
 }
