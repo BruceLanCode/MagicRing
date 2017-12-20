@@ -32,4 +32,4 @@ module.exports = (filePath) => {
     }
 
     return mimeTypes[ext] || mimeTypes['txt'];
-}
+};

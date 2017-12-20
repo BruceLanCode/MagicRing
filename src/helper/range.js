@@ -21,4 +21,4 @@ module.exports = (totalSize,req,res) => {
         start,
         end
     };
-}
+};

@@ -2,7 +2,7 @@
   "name": "magic-ring",
   "version": "1.0.0",
   "description": "huang",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "configEslint": "eslint --init",
     "start": "node src/index.js"

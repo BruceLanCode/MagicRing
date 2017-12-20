@@ -18,7 +18,7 @@ const refreshRes = (stats, res) => {
     if(etag) {
         res.setHeader('ETag',`${stats.size}`);
     }
-}
+};
 
 module.exports = (stats,req,res) => {
     refreshRes(stats,res);
@@ -37,8 +37,8 @@ module.exports = (stats,req,res) => {
     }
 
     if(etag && etag !== res.getHeader('ETag')) {
-        return false
+        return false;
     }
 
     return true;
-}
+};
