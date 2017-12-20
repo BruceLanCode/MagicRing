@@ -7,6 +7,7 @@ const readdir = promisify(fs.readdir);
 const mime = require('./mime');
 const compress = require('./compress');
 const range = require('./range');
+const isFresh = require('./cache');
 
 const tplPath = path.join(__dirname, '../template/dir.pug');
 // const source = fs.readFileSync(tplPath);
@@ -19,6 +20,11 @@ module.exports = async (req, res, filePath, config) => {
         if (stats.isFile()) {
             const contentType = mime(filePath);
             res.setHeader('Content-Type',contentType + ';charset=UTF-8');
+            if(isFresh(stats,req,res)) {
+                res.statusCode = 304;
+                res.end();
+                return;
+            }
             let rs;
             const {code, start, end} = range(stats.size,req,res);
             if(code === 200) {
