@@ -4,11 +4,11 @@ const yargs = require('yargs');
 // console.info(yargs.argv);
 
 const argv = yargs
-    .usage('magic-ring [options]')
+    .usage('magicRing [options]')
     .option('p',{
         alias: 'port',
         describe: '端口号',
-        default: 6000
+        default: 3000
     })
     .option('h',{
         alias: 'hostname',

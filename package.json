@@ -7,6 +7,9 @@
     "configEslint": "eslint --init",
     "start": "node src/index.js"
   },
+  "bin": {
+    "magic-ring":"bin/magicRing"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lantuhui/MagicRing.git"
