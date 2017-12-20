@@ -1,6 +1,6 @@
 {
   "name": "magic-ring",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "huang",
   "main": "src/index.js",
   "scripts": {
